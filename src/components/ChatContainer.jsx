@@ -1,8 +1,8 @@
 function parseListText(text) {
-  // RegEx captura números seguidos de punto y espacio o salto de línea
-  const items = text.split(/(?:\n|^)\s*\d+\.\s*/).filter(Boolean);
+  // Separar por números con punto, capturando números seguidos de punto y espacio
+  // Este split elimina la parte del número, por eso se reconstruye luego con i+1.
+  const items = text.split(/\s*\d+\.\s*/).filter(Boolean)
 
-  // Si hay más de 1 ítem, renderizamos lista con saltos
   if (items.length > 1) {
     return (
       <>
@@ -12,12 +12,12 @@ function parseListText(text) {
           </p>
         ))}
       </>
-    );
+    )
   }
 
-  // Si no detecta lista, devuelve texto simple
-  return text;
+  return text
 }
+
 
 export default function ChatContainer({ messages, visible }) {
   if (!visible) return null
